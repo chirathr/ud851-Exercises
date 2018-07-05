@@ -10,4 +10,17 @@
         android:title="@string/pref_show_bass_label" />
 
     <!-- TODO (1) Add two more checkboxes for the treble and mid-range -->
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_show_mid_default"
+        android:key="@string/pref_show_mid_key"
+        android:summaryOn="@string/pref_show_true"
+        android:summaryOff="@string/pref_show_false"
+        android:title="@string/pref_show_mid_label"/>
+
+    <CheckBoxPreference
+        android:title="@string/pref_show_treble_label"
+        android:key="@string/pref_show_treble_key"
+        android:summaryOn="@string/pref_show_true"
+        android:summaryOff="@string/pref_show_false"
+        android:defaultValue="@bool/pref_show_treble_default"/>
 </PreferenceScreen>
