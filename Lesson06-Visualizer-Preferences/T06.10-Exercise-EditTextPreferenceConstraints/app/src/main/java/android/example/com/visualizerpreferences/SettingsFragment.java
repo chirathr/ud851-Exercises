@@ -27,9 +27,11 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 import android.widget.Toast;
 
+import java.util.prefs.PreferenceChangeListener;
+
 // TODO (1) Implement OnPreferenceChangeListener
 public class SettingsFragment extends PreferenceFragmentCompat implements
-        OnSharedPreferenceChangeListener {
+        OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener {
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -52,6 +54,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             }
         }
         // TODO (3) Add the OnPreferenceChangeListener specifically to the EditTextPreference
+        Preference preference = findPreference(getString(R.string.pref_size_key));
+        preference.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -105,5 +109,26 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         super.onDestroy();
         getPreferenceScreen().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+        if (preference.getKey().equals(getString(R.string.pref_size_key))) {
+            String sizeString = (String) newValue;
+            Toast error = Toast.makeText(getContext(), "Please select a number between 0.1 and 3", Toast.LENGTH_LONG);
+            try {
+                Float size = Float.parseFloat(sizeString);
+                if (size > 3 || size <= 0) {
+                    error.show();
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                error.show();
+                return false;
+            }
+        }
+
+        return true;
     }
 }
