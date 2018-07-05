@@ -16,10 +16,17 @@
 
 package com.udacity.example.quizexample;
 
+import android.content.ContentProvider;
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.udacity.example.droidtermsprovider.DroidTermsExampleContract;
 
 /**
  * Gets the data from the ContentProvider and shows a series of flash cards.
@@ -41,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     // advance the app to the next word
     private final int STATE_SHOWN = 1;
 
+    private Cursor mCursor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         mButton = (Button) findViewById(R.id.button_next);
 
         // TODO (5) Create and execute your AsyncTask here
+
+        DroidTermAsyncTask droidTermAsyncTask = new DroidTermAsyncTask();
+
+        droidTermAsyncTask.execute();
     }
 
     /**
@@ -94,5 +107,23 @@ public class MainActivity extends AppCompatActivity {
     // TODO (2) In the doInBackground method, write the code to access the DroidTermsExample
     // provider and return the Cursor object
     // TODO (4) In the onPostExecute method, store the Cursor object in mData
+
+    class DroidTermAsyncTask extends AsyncTask<Void, Void, Cursor> {
+
+        @Override
+        protected Cursor doInBackground(Void... voids) {
+
+            ContentResolver contentResolver = getContentResolver();
+            return contentResolver.query(DroidTermsExampleContract.CONTENT_URI, null, null, null, null);
+        }
+
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+
+            mCursor = cursor;
+
+            super.onPostExecute(cursor);
+        }
+    }
 
 }
