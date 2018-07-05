@@ -48,4 +48,7 @@
 
     <!-- Value in SharedPreferences for green color option -->
     <string name="pref_color_green_value" translatable="false">green</string>
+    <string name="shape_size_multiplier_key">shape_size_multiplier</string>
+    <string name="shape_size_multiplier_value_default">1</string>
+    <string name="shape_size_multiplier_value">Shape Size Multiplier</string>
 </resources>

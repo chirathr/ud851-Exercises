@@ -26,6 +26,11 @@
     <!-- TODO (1) Add and EditTextPreference with all of the appropriate strings stored in strings.xml.
         It should have a key, default value of 1 and title -->
 
+    <EditTextPreference
+        android:key="@string/shape_size_multiplier_key"
+        android:defaultValue="@string/shape_size_multiplier_value_default"
+        android:title="@string/shape_size_multiplier_value"/>
+
     <ListPreference
         android:defaultValue="@string/pref_color_red_value"
         android:entries="@array/pref_color_option_labels"
