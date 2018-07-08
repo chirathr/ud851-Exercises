@@ -69,6 +69,24 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO (11) attach the ItemTouchHelper to the waitlistRecyclerView
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        long id = (long) viewHolder.itemView.getTag();
+                        removeGuest(id);
+                        mAdapter.swapCursor(getAllGuests());
+                    }
+                }
+        );
+
+        itemTouchHelper.attachToRecyclerView(waitlistRecyclerView);
+
     }
 
     /**
@@ -140,5 +158,9 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO (2) Inside, call mDb.delete to pass in the TABLE_NAME and the condition that WaitlistEntry._ID equals id
 
+    private boolean removeGuest(long id) {
+        String whereClause = WaitlistContract.WaitlistEntry._ID + "=" + id;
+        return mDb.delete(WaitlistContract.WaitlistEntry.TABLE_NAME, whereClause, null) > 0;
+    }
 
 }
