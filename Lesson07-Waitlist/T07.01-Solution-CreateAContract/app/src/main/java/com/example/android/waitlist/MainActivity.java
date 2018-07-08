@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view The calling view (button)
      */
     public void addToWaitlist(View view) {
-
+        Toast.makeText(this, "button clicked", Toast.LENGTH_LONG).show();
     }
 
 
