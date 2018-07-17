@@ -33,45 +33,45 @@
         android:text="@string/priority_string"
         android:textColor="@android:color/primary_text_light" />
 
-        <!-- RadioGroup for visible selection of a priority -->
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:orientation="horizontal"
-            android:weightSum="3">
+    <!-- RadioGroup for visible selection of a priority -->
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal"
+        android:weightSum="3">
 
-            <RadioButton
-                android:id="@+id/radButton1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/materialRed"
-                android:checked="true"
-                android:text="@string/high_priority"
-                android:theme="@style/WhiteRadioButton" />
+        <RadioButton
+            android:id="@+id/radButton1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/materialRed"
+            android:checked="true"
+            android:text="@string/high_priority"
+            android:theme="@style/WhiteRadioButton" />
 
-            <RadioButton
-                android:id="@+id/radButton2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/materialOrange"
-                android:text="@string/med_priority"
-                android:theme="@style/WhiteRadioButton" />
+        <RadioButton
+            android:id="@+id/radButton2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/materialOrange"
+            android:text="@string/med_priority"
+            android:theme="@style/WhiteRadioButton" />
 
-            <RadioButton
-                android:id="@+id/radButton3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/materialYellow"
-                android:text="@string/low_priority"
-                android:theme="@style/WhiteRadioButton" />
+        <RadioButton
+            android:id="@+id/radButton3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/materialYellow"
+            android:text="@string/low_priority"
+            android:theme="@style/WhiteRadioButton" />
 
-        </RadioGroup>
+    </RadioGroup>
 
     <!-- Add button -->
     <Button
