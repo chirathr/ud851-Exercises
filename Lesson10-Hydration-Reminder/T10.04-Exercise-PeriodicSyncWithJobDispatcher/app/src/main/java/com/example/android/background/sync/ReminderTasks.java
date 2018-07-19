@@ -19,17 +19,24 @@ import android.content.Context;
 
 import com.example.android.background.utilities.NotificationUtils;
 import com.example.android.background.utilities.PreferenceUtilities;
+import com.firebase.jobdispatcher.Driver;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
 
 public class ReminderTasks {
 
     public static final String ACTION_INCREMENT_WATER_COUNT = "increment-water-count";
     public static final String ACTION_DISMISS_NOTIFICATION = "dismiss-notification";
+    public static final String ACTION_START_REMINDER = "start-reminder";
 
     public static void executeTask(Context context, String action) {
         if (ACTION_INCREMENT_WATER_COUNT.equals(action)) {
             incrementWaterCount(context);
         } else if (ACTION_DISMISS_NOTIFICATION.equals(action)) {
             NotificationUtils.clearAllNotifications(context);
+        } else if (ACTION_START_REMINDER.equals(action)) {
+            issueChargeReminder(context);
         }
     }
 
@@ -44,4 +51,9 @@ public class ReminderTasks {
     // increment the charging reminder count (hint: there is a method for this in PreferenceUtilities)
     // When finished, you should be able to call executeTask with the correct parameters to execute
     // this task. Don't forget to add the code to executeTask which actually calls your new task!
+
+    private static void issueChargeReminder(Context context) {
+        PreferenceUtilities.incrementChargingReminderCount(context);
+        NotificationUtils.remindUserBecauseCharging(context);
+    }
 }
